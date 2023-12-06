@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block titulo%}Post{%endblock titulo%}
+{%block contenido%}
+    <h2>Acá estan los post</h2>
+    <a href="{% url 'home' %}">VOLVER AL HOME</a>
+    {% for post in post %}
+        <h3>{{post.titulo}}</h3>
+        <p>{{post.contenido}}</p>
+        <img src="{{post.imagenes.url}}" width="25%">  
+        <p>{{post.fecha_publicacion}}</p>
+        <p>{{post.categoria_post}}</p>
+        <br>
+        <br>
+        <br>
+        <br>
+    {% endfor %}
+{%endblock contenido%}

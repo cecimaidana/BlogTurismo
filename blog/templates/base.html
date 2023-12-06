@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type ="text/css" href="{% static 'css/main.css' %}">
+    <title>Nuestro Blog {%block titulo%}{%endblock titulo%}</title>
+</head>
+<body class="contenedor">
+    {%block contenido%}
+
+    {%endblock contenido%}
+    <a href="{% url 'acerca_de' %}">ACERCA DE</a>
+    <a href="{% url 'contacto' %}">CONTACTO</a>
+    <a href="{% url 'categorias' %}">CATEGORIAS</a>
+    <a href="{% url 'post:listar' %}">POST</a>
+    
+    
+</body>
+</html>
