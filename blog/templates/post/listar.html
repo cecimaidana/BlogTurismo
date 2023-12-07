@@ -3,13 +3,21 @@
 {%block titulo%}Post{%endblock titulo%}
 {%block contenido%}
     <h2>Acá estan los post</h2>
-    <a href="{% url 'home' %}">VOLVER AL HOME</a>
+    <div class="submenu">
+        <a href ="{% url 'post:listar' %}">TODAS</a>
+        {% for cat in categoria %}
+            <a href ="?id={{cat.pk}}">{{cat.nombre}}</a>
+        {% endfor %}
+        <a href ="?antiguedad_asc=1">Mas antiguas</a>
+        <a href ="?antiguedad_desc=1">Mas recientes</a>
+        <a href ="?orden_asc=1">A - Z</a>
+        <a href ="?orden_desc=1">Z - A</a>
+    </div>
     {% for post in post %}
-        <h3>{{post.titulo}}</h3>
-        <p>{{post.contenido}}</p>
-        <img src="{{post.imagenes.url}}" width="25%">  
-        <p>{{post.fecha_publicacion}}</p>
-        <p>{{post.categoria_post}}</p>
+        <h3><a href="{% url 'post:detalle' post.pk %}">Titulo:{{post.titulo}} </a></h3>        
+        <img src="{{post.imagenes.url}}" width="25%"> 
+        <br>
+        <a href ="{% url 'post:detalle' post.pk %}">VER MAS</a>
         <br>
         <br>
         <br>

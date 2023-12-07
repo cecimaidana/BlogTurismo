@@ -9,8 +9,7 @@ def Acerca_de (request):
 def Contacto(request):
     return render(request, 'contacto.html')
 
-def Categorias(request):
-    return render(request, 'categorias.html')
+
 
 
 

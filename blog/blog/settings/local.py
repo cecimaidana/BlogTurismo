@@ -9,7 +9,7 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'proyecto_final',
+        'NAME': 'blog_turismo',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',

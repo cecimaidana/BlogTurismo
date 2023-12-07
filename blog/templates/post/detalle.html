@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block titulo%}Post{%endblock titulo%}
+{%block contenido%}
+    <h2>Noticia detallada</h2>
+    <div class="post">
+        <img src="{{post.imagenes.url}}" width="25%"> 
+        
+        <h3>{{post.titulo}}</h3>
+        <p>{{post.contenido}}</p>
+        
+        <p>{{post.fecha_publicacion}}</p>
+        <p>{{post.categoria_post}}</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'post:listar' %}">VOLVER</a>
+    </div>
+{%endblock contenido%}
