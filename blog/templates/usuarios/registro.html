@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block titulo%}Registro{%endblock titulo%}
+{%block contenido%}
+<div>
+<h1>Registrate</h1>
+<div><b>Para usar la plataforma debe Registrarse</b></div>
+</div>
+<form method="POST">{% csrf_token %}
+{{form.errors}}
+<div class ="formulario-registro">
+    <label for="Nombre">Nombre de usuario</label>
+    <input type="text" name="username" placeholder="Nombre de usuario" required>
+    <br>
+    <br>
+    <label for="Contraseña">Ingrese Contraseña</label>
+    <input type="text" name="password1" placeholder="Contraseña" required>
+    <br>
+    <br>
+    <label for="Confirmar Contraseña">Confirmar Contraseña</label>
+    <input type="text" name="password2" placeholder="Confirmar Contraseña" required>
+    <br>
+    <br>
+    <label for="Nombre">Nombre</label>
+    <input type="text" name="first_name" placeholder="Nombre" required>
+    <br>
+    <br>
+    <label for="Apellido">Apellido</label>
+    <input type="text" name="last_name" placeholder="Apellido" required>
+    <br>
+    <br>
+    <label for="Email">Correo Eléctronico</label>
+    <input type="text" name="email" placeholder="Email" required>
+    <br>
+    <br>
+    
+</div>
+<input type="submit" value="Registrarse">
+</form> 
+{% endblock contenido %}

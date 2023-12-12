@@ -3,16 +3,30 @@
 {%block titulo%}Post{%endblock titulo%}
 {%block contenido%}
     <h2>Acá estan los post</h2>
-    <div class="submenu">
-        <a href ="{% url 'post:listar' %}">TODAS</a>
-        {% for cat in categoria %}
-            <a href ="?id={{cat.pk}}">{{cat.nombre}}</a>
-        {% endfor %}
-        <a href ="?antiguedad_asc=1">Mas antiguas</a>
-        <a href ="?antiguedad_desc=1">Mas recientes</a>
-        <a href ="?orden_asc=1">A - Z</a>
-        <a href ="?orden_desc=1">Z - A</a>
-    </div>
+    <form method="get" action="{% url 'post:listar'%}">
+        <select name="id">
+            <option value="">Todas</option>
+            {% for cat in categorias %}
+                <option value="{{cat.pk}}">{{cat.nombre}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="antiguedad">
+            <option value="">Ordenar por Antigüedad</option>
+            <option value="asc">Más antiguas primero</option>
+            <option value="desc">Más recientes primero</option>
+        </select>
+
+        <select name="orden">
+            <option value="">Ordenar alfabéticamente</option>
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
+        </select>
+
+        <input type="submit" value="Filtrar">
+    </form>    
+
+
     {% for post in post %}
         <h3><a href="{% url 'post:detalle' post.pk %}">Titulo:{{post.titulo}} </a></h3>        
         <img src="{{post.imagenes.url}}" width="25%"> 

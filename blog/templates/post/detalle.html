@@ -3,18 +3,26 @@
 {%block titulo%}Post{%endblock titulo%}
 {%block contenido%}
     <h2>Noticia detallada</h2>
+    
     <div class="post">
-        <img src="{{post.imagenes.url}}" width="25%"> 
+        <img src="{{post.imagenes.url}}" width="30%"> 
         
         <h3>{{post.titulo}}</h3>
-        <p>{{post.contenido}}</p>
-        
+        <p>{{post.contenido}}</p>      
         <p>{{post.fecha_publicacion}}</p>
         <p>{{post.categoria_post}}</p>
+        <p>Autor: {{post.autor}}</p>
+        {% if user.is_authenticated and post.autor == user %}
+            <form method="POST" action="{% url 'post:detalle' pk=post.pk %}">
+                {%% csrf_token %}
+                <button type="submit" name="delete_post">BORRAR</button>
+            </form>
+        {% endif %}
         <br>
         <br>
         <br>
         <br>
         <a href="{% url 'post:listar' %}">VOLVER</a>
     </div>
+
 {%endblock contenido%}

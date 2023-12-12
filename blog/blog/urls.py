@@ -25,5 +25,9 @@ urlpatterns = [
     path('acerca_de/', views.Acerca_de, name = 'acerca_de'),
     path('contacto/', views.Contacto, name = 'contacto'),
     path('post/', include('apps.post.urls')),
+    path('usuarios/', include('apps.usuarios.urls')),
+    #parametro 1: texto de la url
+    #parametro 2: la views q se va a ejecutar
+    #parametro 3: nombre de la url
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
