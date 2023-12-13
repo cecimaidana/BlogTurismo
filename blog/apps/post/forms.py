@@ -1,12 +1,10 @@
 from django import forms 
-from .models import Post
+from .models import Post, Comentario
 
 class PostForm(forms.ModelForm):
     class meta:
         model = Post
         fields = [
-            'titulo',
-            'resumen',
             'contenido',
             'imagenes',
             'categoria_post',
@@ -19,7 +17,7 @@ class ComentarioForm(forms.ModelForm):
             'contenido'
         ]
         exclude = ['usuario']
-    def __init__(self, *args, **kwargs)
+    def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         
         super(ComentarioForm, self).__init__(*args, **kwargs)
