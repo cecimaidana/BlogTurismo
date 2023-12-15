@@ -24,7 +24,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect ('home')#redirecciona al home
+    return redirect ('login')#redirecciona al login
 
 #registro de usuarios
 class Registro(CreateView):

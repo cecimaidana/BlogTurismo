@@ -16,7 +16,7 @@ class Post (models.Model):
     imagenes = models.ImageField(upload_to='post')
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     categoria_post = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
-    autor = models.ForeignKey(Usuario, on_delete = models.CASCADE, default=Usuario.objects.get(is_superuser=True).pk)
+    autor = models.ForeignKey(Usuario, on_delete = models.CASCADE, null = True)
     def __str__(self):
         return self.titulo
 class Comentario(models.Model):

@@ -14,12 +14,10 @@
     {%endblock contenido%}
     {% if user.is_authenticated %}
         <strong> Hola {{user.username}}</strong>
-        <br>
-        <br>
-        <a href="{% url 'usuarios:logout' %}">LOGOUT</a>
+        <a href="{% url 'logout' %}">LOGOUT</a>
     {% else %}
-        <a href="{% url 'usuarios:login' %}">LOGIN</a>
-        <a href="{% url 'usuarios:registro' %}">Resgistro</a>
+        <a href="{% url 'login' %}">LOGIN</a>
+        <a href="{% url 'registro' %}">Resgistro</a>
     {% endif %}
     <br>
     <br>

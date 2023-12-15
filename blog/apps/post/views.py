@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Post, Categoria, Comentario
 from .forms import PostForm, ComentarioForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.contrib import messages
 
 # Create your views here.
 def ListarPost (request):
@@ -11,7 +12,9 @@ def ListarPost (request):
     id_categoria = request.GET.get("id", None)
     antiguedad = request.GET.get("antiguedad", None)
     orden= request.GET.get("orden", None)
+    
     n = Post.objects.all()
+    
     #filtro por categoria 
     if id_categoria:
         n = n.filter(categoria_post=id_categoria)
@@ -62,6 +65,9 @@ def DetallePost(request, pk):
     }
     return render(request, 'post/detalle.html', contexto)
 
+
+
+
 @login_required
 def AddPost(request):
     if request.method == 'POST':
@@ -97,9 +103,8 @@ def BorrarComentario(request, comentario_id):
 @login_required
 def EditarPost(request, pk):
     post = get_object_or_404(Post, pk=pk)
-
-    # Solo el autor puede editar la noticia
-    if post.autor != request.user:
+    
+    if post.autor != request.user: #solo autor lo puede modificar
         return HttpResponseForbidden("No tienes permiso para editar.")
 
     if request.method == 'POST':
@@ -114,6 +119,27 @@ def EditarPost(request, pk):
         'form': form,
     }
     return render(request, 'post/editar.html', context)
+    
+#editar comentario
+@login_required
+def EditarComentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    
+    if comentario.usuario != request.user.username:
+        messages.error(request, 'No tiene permiso para editar')
+        return redirect('post:detalle', pk=comentario.post.pk)
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form.save()
+            return redirect('post:detalle', pk=comentario.post.pk)
+    else:
+        form = ComentarioForm(instance=comentario)
+    contexto ={
+        'form':form,
+        'comentario': comentario,
+    }
+    return render(request, 'post/editar_comentario.html', contexto)
     
 
 

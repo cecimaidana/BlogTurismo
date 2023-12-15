@@ -30,8 +30,7 @@
     {% for post in post %}
         <h3><a href="{% url 'post:detalle' post.pk %}">Titulo:{{post.titulo}} </a></h3>        
         <img src="{{post.imagenes.url}}" width="25%"> 
-        <br>
-        <a href ="{% url 'post:detalle' post.pk %}">VER MAS</a>
+        
         <br>
         <br>
         <br>
