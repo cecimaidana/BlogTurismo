@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-{%block titulo%}Registro{%endblock titulo%}
-{%block contenido%}
+{% block titulo %}Registro{% endblock titulo %}
+{% block contenido %}
+
 <div>
     <h1>Registrate</h1>
     <div><b>Para usar la plataforma debe Registrarse</b></div>
 </div>
+
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

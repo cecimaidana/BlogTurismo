@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
 {%block titulo%}Login{%endblock titulo%}
-{%block contenido%}
+{% block contenido %}
     <form method="POST">{% csrf_token %}
         {%  if messages %}
             {% for message in messages %}
