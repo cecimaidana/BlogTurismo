@@ -12,6 +12,7 @@ urlpatterns = [
     path('detalle/<int:pk>',views.DetallePost, name='detalle'),
     path('addPost', views.AddPost, name = 'addpost'),
     path('post/<int:pk>/edit/', views.EditarPost, name='edit_post'),
+
     path('comentario/add/<int:post_id>', views.AddComentario, name='add_comentario'),
     path('comentario/delete/<int:comentario_id>', views.BorrarComentario, name='delete_comentario'),
     path('comentario/edit/<int:comentario_id>', views.EditarComentario, name='edit_comentario'),

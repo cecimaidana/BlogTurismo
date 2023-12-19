@@ -12,7 +12,7 @@
         <p>{{post.fecha_publicacion}}</p>
         <p>{{post.categoria_post}}</p>
         <p>Autor: {{post.autor}}</p>
-        {% if user.is_authenticated and post.autor == user or user.is_staff %}
+        {% if user.is_authenticated and post.autor == user %}
         <a href="{% url 'post:edit_post' pk=post.pk %}">Editar</a>
             <form method="POST" action="{% url 'post:detalle' pk=post.pk %}">
                 {% csrf_token %}
@@ -26,7 +26,7 @@
             <p>{{comentario.contenido}}</p>
             <form method="post" action="{% url 'post:delete_comentario' comentario.id %}">
                 {% csrf_token %}
-                {% if comentario.usuario == user.username %}
+                {% if comentario.usuario == user.username or user.is_staff %}
                     <button type="submit">Borrar</button>
                     <a href="{% url 'post:edit_comentario' comentario_id=comentario.id %}">Editar</a>
                 {% endif %}

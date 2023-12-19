@@ -81,6 +81,8 @@ def AddPost(request):
         form = PostForm()  
     return render (request, 'post/addPost.html', {'form':form})
 
+
+
 @login_required
 def AddComentario(request, post_id):
     post = get_object_or_404(Post, id = post_id)   
@@ -91,6 +93,7 @@ def AddComentario(request, post_id):
         Comentario.objects.create(post = post, usuario = usuario, contenido = contenido)
     
     return redirect('post:detalle', pk = post_id)
+
 
 @login_required
 def BorrarComentario(request, comentario_id):

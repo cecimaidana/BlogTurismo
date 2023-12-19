@@ -14,10 +14,10 @@ class Usuario(AbstractUser):
     
     
     TIPOS_DE_USUARIO = [
-        (USUARIO_COLABORADOR, 'Colaborador'), #is_superuser=False, is_staff=True
+        (USUARIO_COLABORADOR, 'Colaborador'), 
         (USUARIO_VISITANTE, 'Visitante'), #no esta registrado, no esta logueado / no aparece en la base de datos
-        (USUARIO_MIEMBRO, 'Miembro'), #is_superuser=False, is_staff=False
-        (USUARIO_SUPER, 'Superusuario'), #is_superuser=True, is_staff=True
+        (USUARIO_MIEMBRO, 'Miembro'), 
+        (USUARIO_SUPER, 'Superusuario'), 
     ]
     
     tipo_usuario = models.CharField(max_length=20, choices=TIPOS_DE_USUARIO, default=USUARIO_MIEMBRO)

@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.views.generic import CreateView
 from .forms import RegistroForm
 from django.urls import reverse_lazy
+
+
 #creando un login
 def user_login(request):
     if request.method == 'POST':
@@ -30,5 +32,5 @@ def user_logout(request):
 class Registro(CreateView):
     #formulario de registro
     form_class = RegistroForm
-    success_url = reverse_lazy ('login')
+    success_url = reverse_lazy('login')
     template_name = 'usuarios/registro.html'
