@@ -9,26 +9,32 @@
     <title>Nuestro Blog {%block titulo%}{%endblock titulo%}</title>
 </head>
 
-<body class="contenedor">
+<body>
+
+<header>
+
+    <nav class="nav nav-pill flex-column flex-sm-row">
+        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'home' %}">Home</a>
+        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'acerca_de' %}">Nosotros</a>
+        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'post:listar' %}">Post</a>
+        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'apps.contacto:contacto' %}">Contacto</a>
+        
+        
+        <img src="{% static 'img/home.jpg' %}"style="max-width: 500px; margin:50px;">
+        
+    </nav>
+</header>
+{% if user.is_authenticated %}
+<strong> Hola {{user.username}}</strong>
+<br>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}    
+    <a href="{% url 'login' %}">LOGIN</a>
+    <a href="{% url 'registro' %}">Registro</a>
+{% endif %}
     {%block contenido%}
 
     {%endblock contenido%}
-
-    <a href="{% url 'home' %}">HOME</a>
-    <a href="{% url 'acerca_de' %}">ACERCA DE</a>
-    <a href="{% url 'post:listar' %}">Post</a>
-    <a href="{% url 'contacto' %}">CONTACTO</a>
-
-    {% if user.is_authenticated %}
-        <strong> Hola {{user.username}}</strong>
-        <br>
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}    
-        <a href="{% url 'login' %}">LOGIN</a>
-        <a href="{% url 'registro' %}">Registro</a>
-    {% endif %}
-    <br>
-    <br>
 
 
 </body>
