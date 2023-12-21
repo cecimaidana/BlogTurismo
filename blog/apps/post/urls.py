@@ -10,7 +10,7 @@ urlpatterns = [
     
     path('',views.ListarPost, name='listar'),
     path('detalle/<int:pk>',views.DetallePost, name='detalle'),
-    path('addPost', views.AddPost, name = 'addpost'),
+    path('post/addPost', views.AddPost, name = 'addpost'),
     path('post/<int:pk>/edit/', views.EditarPost, name='edit_post'),
 
     path('comentario/add/<int:post_id>', views.AddComentario, name='add_comentario'),

@@ -77,9 +77,9 @@ def AddPost(request):
             post.autor = request.user
             form.save()
             return redirect('home')
-    else:
-        form = PostForm()  
-    return render (request, 'post/addPost.html', {'form':form})
+        else:
+            form = PostForm()  
+        return render (request, 'post/addPost.html', {'form':form})
 
 
 

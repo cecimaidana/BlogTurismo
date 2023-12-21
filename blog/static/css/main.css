@@ -42,3 +42,12 @@ body {
     background: linear-gradient(to right, #87b1e9, #6c98f7);
 }
 
+
+.texto{
+    font-family:unset;
+}
+
+.parrafo{
+    font-style:initial;
+    font-family:cursive;
+}

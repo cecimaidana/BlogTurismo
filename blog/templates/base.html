@@ -9,33 +9,47 @@
     <title>Nuestro Blog {%block titulo%}{%endblock titulo%}</title>
 </head>
 
-<body>
+<body class="contenedor">
 
 <header>
 
-    <nav class="nav nav-pill flex-column flex-sm-row">
-        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'home' %}">Home</a>
-        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'acerca_de' %}">Nosotros</a>
-        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'post:listar' %}">Post</a>
-        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'apps.contacto:contacto' %}">Contacto</a>
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'acerca_de' %}">Nosotros</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'post:listar' %}">Post</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active"href="{% url 'apps.contacto:contacto' %}">Contacto</a>
+        </li>
+        <br>
+
         
+    </ul>
         
-        <img src="{% static 'img/home.jpg' %}"style="max-width: 500px; margin:50px;">
-        
+
     </nav>
 </header>
-{% if user.is_authenticated %}
-<strong> Hola {{user.username}}</strong>
-<br>
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}    
-    <a href="{% url 'login' %}">LOGIN</a>
-    <a href="{% url 'registro' %}">Registro</a>
-{% endif %}
+
     {%block contenido%}
 
     {%endblock contenido%}
-
+    {% if user.is_authenticated %}
+    <strong>Hola {{ user.username }}</strong>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'login' %}">Logout</a>
+    </li>
+    {% else %}  
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'login' %}">Login</a>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'registro' %}">Registro</a>    
+    </li>
+    {% endif %}
 
 </body>
 </html>
