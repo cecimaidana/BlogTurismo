@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type ="text/css" href="{% static 'css/main.css' %}">
+    <title>Nuestro Blog {%block titulo%}{%endblock titulo%}</title>
+</head>
+
+<div class="dropdown" data-bs-theme="light">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+      Default dropdown
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
+      <li><a class="dropdown-item active" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+  </div>
+  
+  <div class="dropdown" data-bs-theme="dark">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonDark" data-bs-toggle="dropdown" aria-expanded="false">
+      Dark dropdown
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDark">
+      <li><a class="dropdown-item active" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+  </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane" viewBox="0 0 16 16">
+    <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599"/>
+  </svg>
+
+<body class="contenedor">
+    {%block contenido%}
+
+    {%endblock contenido%}
+    
+    <a href="{% url 'nosotros' %}">NOSOTROS</a>
+    <a href="{% url 'home' %}">VOLVER AL INICIO</a>
+    <a href="{% url 'noticias.listar' %}">NOTICIAS</a>
+
+    {% if user.is_authenticated %}
+        <strong> Hola {{user.username}}</strong>
+        <a href="{% url 'logout' %}">LOGOUT</a>
+    {% else %}
+        <a href="{% url 'login' %}">LOGIN</a>
+        <a href="{% url 'registro' %}">Resgistro</a>
+    {% endif %}
+    <br>
+    <br>
+    <a href="{% url 'home' %}">HOME</a>
+    <a href="{% url 'acerca_de' %}">ACERCA DE</a>
+    <a href="{% url 'post:listar' %}">Post</a>
+    <a href="{% url 'contacto' %}">CONTACTO</a>
+
+</body>
+
+</html>
+
