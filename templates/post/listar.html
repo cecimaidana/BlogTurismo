@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block titulo%}Post{%endblock titulo%}
+{%block contenido%}
+    <h2>Acá estan los post</h2>
+    <form method="get" action="{% url 'post:listar'%}">
+        <select name="id">
+            <option value="">Todas</option>
+            {% for cat in categorias %}
+                <option value="{{cat.pk}}">{{cat.nombre}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="antiguedad">
+            <option value="">Ordenar por Antigüedad</option>
+            <option value="asc">Más antiguas primero</option>
+            <option value="desc">Más recientes primero</option>
+        </select>
+
+        <select name="orden">
+            <option value="">Ordenar alfabéticamente</option>
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
+        </select>
+
+        <input type="submit" value="Filtrar">
+    </form>    
+
+
+    {% for post in post %}
+        <h3><a href="{% url 'post:detalle' post.pk %}">Titulo:{{post.titulo}} </a></h3>        
+        <img src="{{post.imagenes.url}}" width="25%"> 
+        
+        <br>
+        <br>
+        <br>
+        <br>
+    {% endfor %}
+{%endblock contenido%}
