@@ -2,11 +2,11 @@ from django import forms
 from .models import Post, Comentario
 
 class PostForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model = Post
         fields = [
-            'titulo'
-            'resumen'
+            'titulo',
+            'resumen',
             'contenido',
             'imagenes',
             'categoria_post',
@@ -16,7 +16,7 @@ class ComentarioForm(forms.ModelForm):
     class Meta:
         model = Comentario 
         fields = [
-            'contenido'
+            'contenido',
         ]
         exclude = ['usuario']
     def __init__(self, *args, **kwargs):

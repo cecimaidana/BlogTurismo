@@ -2,7 +2,11 @@
 {% load static %}
 {%block titulo%}Post{%endblock titulo%}
 {%block contenido%}
-    <h2>Acá estan los post</h2>
+
+<center>
+    <img src="{% static 'img/post.jpg' %}"style="max-width: 400px;; margin:20px">
+</center>
+<center>
     <form method="get" action="{% url 'post:listar'%}">
         <select name="id">
             <option value="">Todas</option>
@@ -25,7 +29,8 @@
 
         <input type="submit" value="Filtrar">
     </form>    
-
+<br>
+<br>
 
     {% for post in post %}
         <h3><a href="{% url 'post:detalle' post.pk %}">Titulo:{{post.titulo}} </a></h3>        
@@ -33,7 +38,7 @@
         
         <br>
         <br>
-        <br>
-        <br>
+        
     {% endfor %}
+</center>
 {%endblock contenido%}

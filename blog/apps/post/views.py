@@ -47,12 +47,12 @@ def DetallePost(request, pk):
     if request.method == 'POST' and 'delete_post' in request.POST:
         n.delete()
         return redirect ('post:listar')
-    #COMENTARIO
+    #agregar comentario
     if request.method == 'POST' and 'add_comentario' in request.POST:
         form = ComentarioForm(request.POST)
         if form.is_valid():
-            comentarios = form.save(commit=False)
-            comentarios.usuario = request.user
+            comentario = form.save(commit=False)
+            comentario.usuario = request.user
             form.save()
             return redirect('post:detalle', pk=pk)
     else:
@@ -71,15 +71,15 @@ def DetallePost(request, pk):
 @login_required
 def AddPost(request):
     if request.method == 'POST':
-        form = PostForm(request.POST or None, request.FILES) ##Request files es para las imagenes       
+        form = PostForm(request.POST or None, request.FILES) #files es para las imagenes       
         if form.is_valid():
             post = form.save(commit=False)
             post.autor = request.user
             form.save()
             return redirect('home')
-        else:
-            form = PostForm()  
-        return render (request, 'post/addPost.html', {'form':form})
+    else:
+        form = PostForm()  
+    return render (request, 'post/addPost.html', {'form':form})
 
 
 
@@ -89,7 +89,7 @@ def AddComentario(request, post_id):
     if request.method == 'POST':
         contenido = request.POST.get("contenido")
         usuario = request.user.username
-        # creacion de comentario
+        # crear comentario
         Comentario.objects.create(post = post, usuario = usuario, contenido = contenido)
     
     return redirect('post:detalle', pk = post_id)
@@ -106,10 +106,10 @@ def BorrarComentario(request, comentario_id):
 @login_required
 def EditarPost(request, pk):
     post = get_object_or_404(Post, pk=pk)
+        # Solo el autor puede editar la noticia
+    if post.autor != request.user:
+        return HttpResponseForbidden("No tenes permiso para editar esta noticia.")
     
-    if post.autor != request.user: #solo autor lo puede modificar
-        return HttpResponseForbidden("No tienes permiso para editar.")
-
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
@@ -128,9 +128,9 @@ def EditarPost(request, pk):
 def EditarComentario(request, comentario_id):
     comentario = get_object_or_404(Comentario, id=comentario_id)
     
-    if comentario.usuario != request.user.username:
-        messages.error(request, 'No tiene permiso para editar')
-        return redirect('post:detalle', pk=comentario.post.pk)
+    #if comentario.autor != request.user.username:
+        #messages.error(request, 'No podes editar este comentario?)
+        #return redirect('post:detalle', pk=comentario.post.pk) 
     if request.method == 'POST':
         form = ComentarioForm(request.POST, instance=comentario)
         if form.is_valid():

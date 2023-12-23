@@ -29,7 +29,7 @@ urlpatterns = [
     path('post/', include('apps.post.urls')),
     path('usuarios/', include('apps.usuarios.urls')),
     path('contacto/', include('apps.contacto.urls')),
-    path('',include('django.contrib.auth.urls')),
+    
     #parametro 1: texto de la url
     #parametro 2: la views q se va a ejecutar
     #parametro 3: nombre de la url

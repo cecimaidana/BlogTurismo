@@ -2,17 +2,20 @@
 {% load static %}
 {%block titulo%}Post{%endblock titulo%}
 {%block contenido%}
-    <h2>Noticia detallada</h2>
-    
+<center>
+    <h3>{{post.titulo}}</h3>    
+</center>
+<br>  
+<br>
     <div class="post">
-        <img src="{{post.imagenes.url}}" width="30%"> 
+        <img src="{{post.imagenes.url}}" width="35%"> 
         
-        <h3>{{post.titulo}}</h3>
+        
         <p>{{post.contenido}}</p>      
         <p>{{post.fecha_publicacion}}</p>
         <p>{{post.categoria_post}}</p>
         <p>Autor: {{post.autor}}</p>
-        {% if user.is_authenticated and post.autor == user %}
+        {% if user.is_authenticated and post.autor == user or user.is_staff %}
         <a href="{% url 'post:edit_post' pk=post.pk %}">Editar</a>
             <form method="POST" action="{% url 'post:detalle' pk=post.pk %}">
                 {% csrf_token %}

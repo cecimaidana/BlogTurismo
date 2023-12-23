@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type ="text/css" href="{% static 'css/main.css' %}">
-    <title>Nuestro Blog {%block titulo%}{%endblock titulo%}</title>
+    <title>Group One Travel {%block titulo%}{%endblock titulo%}</title>
 </head>
 
-<body class="contenedor">
+<body class="container">
 
 <header>
 
     <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
             <a class="nav-link active" href="{% url 'home' %}">Home</a>
-        </li>
+        </li><br>
         <li class="nav-item">
             <a class="nav-link active" href="{% url 'acerca_de' %}">Nosotros</a>
         </li>
@@ -26,30 +26,23 @@
         <li class="nav-item">
             <a class="nav-link active"href="{% url 'apps.contacto:contacto' %}">Contacto</a>
         </li>
-        <br>
-
-        
+        <br>       
     </ul>
-        
-
     </nav>
 </header>
 
-    {%block contenido%}
+{% if user.is_authenticated %}
+    <strong class="texto">Hola {{ user.username }}</strong>
+    <br>
+    <a class= "texto" href="{% url 'logout' %}">LOGOUT</a>
+{% else %}
+    <a class= "texto" href="{% url 'login' %}">LOGIN</a>
+    <a class= "texto" href="{% url 'registro' %}">REGISTRO</a>
+{% endif %}
+{%block contenido%}
 
-    {%endblock contenido%}
-    {% if user.is_authenticated %}
-    <strong>Hola {{ user.username }}</strong>
-    <li class="nav-item">
-        <a class="nav-link active" href="{% url 'login' %}">Logout</a>
-    </li>
-    {% else %}  
-    <li class="nav-item">
-        <a class="nav-link active" href="{% url 'login' %}">Login</a>
-    <li class="nav-item">
-        <a class="nav-link active" href="{% url 'registro' %}">Registro</a>    
-    </li>
-    {% endif %}
+{%endblock contenido%}
+
 
 </body>
 </html>

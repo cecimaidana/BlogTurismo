@@ -15,7 +15,7 @@ class ContactoUsuario(CreateView):
     
     
     def form_valid(self,form):
-        messages.success(self.request, 'Consulta enviada.')#mensaje que se ve luego del envio del la consulta
+        messages.success(self.request, 'Consulta enviada a Group One.')#mensaje que se ve luego del envio del la consulta
         return super().form_valid(form)
     
 

@@ -2,13 +2,18 @@
 {% load static %}
 {%block titulo%}Home{%endblock titulo%}
 {%block contenido%}
-    <h2>Ultimos post</h2>
-<footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
-    <div class="container text-center">
-        <small>Copyright &copy; Nuesto Blog de turismo</small>
-    </div>
-</footer>
 <center>
-    <img src="{% static 'img/home.jpg' %}"style="max-width: 500px; margin:50px;">
-</center> 
+    <img src="{% static 'img/portada2.jpg' %}"style="max-width: 1200px;; margin:20px">
+</center>
+    <h2 class="letra">Ultimos post</h2>
+    {% for post in ultimos_post %}
+    
+        <div class="imga1">
+        <h3><a href="{% url 'post:detalle' post.pk %}">Titulo:{{post.titulo}} </a></h3>        
+        <img src="{{post.imagenes.url}}" width="25%"> 
+        <br>
+        </div>
+    
+    {% endfor %}
+
 {%endblock contenido%}
