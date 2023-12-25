@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['cecimaidana.pythonanywhere.com']
+ALLOWED_HOSTS = ['groupone.pythonanywhere.com']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,9 +28,6 @@ SECRET_KEY = 'django-insecure-+n)o0*ntytjp!-h*dj+zmg2-ac6*b=i^17n*%dltk4ioi1t#9b
 AUTH_USER_MODEL = 'usuarios.Usuario'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['cecimaidana.pythonanywhere.com']
 
 
 # Application definition

@@ -9,10 +9,10 @@ from .base import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Cecimaidana$default',
-        'USER': 'Cecimaidana',
+        'NAME': 'groupone$default',
+        'USER': 'groupone',
         'PASSWORD': 'informatorio2023',
-        'HOST': 'Cecimaidana.mysql.pythonanywhere-services.com',
+        'HOST': 'groupone.mysql.pythonanywhere-services.com',
         'PORT': '',
     }
 }
